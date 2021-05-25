@@ -4,10 +4,10 @@ const url = 'https://pokeapi.co/api/v2/pokemon/'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false)
+  const [dexLigada, setDexLigada] = useState(false)
   const [pokemonsUrl, setPokemonsUrl] = useState([])
   const [pegou, setPegou] = useState(false)
-  const [pokemonData, setPokemonData] = useState([])
+  const [pokemonData, setPokemonData] = useState([{id:'', name:'', sprite:''}])
   
   // Pegando os dados iniciais
   async function fetchPokemons(url) {
@@ -19,9 +19,6 @@ const AppProvider = ({ children }) => {
     })
     setPegou(!pegou)
   }
-  useEffect(()=>{
-    fetchPokemons(url)
-  },[])
 
   // Pegando os dados individuais dos pokemons
   async function fetchPokemonsData(url) {
@@ -36,10 +33,23 @@ const AppProvider = ({ children }) => {
     }
   },[pegou])
   
+  // Abrindo a Pokedex
+  const openDex = () =>{
+    fetchPokemons(url)
+    setDexLigada(!dexLigada)
+  }
+  
+  
+  
+  
+  
+  
+  
   return <AppContext.Provider value={{
-    loading,
     pokemonsUrl,
-    pokemonData
+    pokemonData,
+    dexLigada,
+    openDex
   }}>{children}</AppContext.Provider>
 }
 

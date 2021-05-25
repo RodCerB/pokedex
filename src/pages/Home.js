@@ -1,12 +1,13 @@
 import React from 'react'
-import PokemonList from '../components/PokemonList'
-import SearchForm from '../components/SearchForm'
+import Dex from '../components/Dex'
+import { useGlobalContext } from '../context'
 
 const Home = () => {
+  const {dexLigada} = useGlobalContext()
+
   return (
     <main>
-      <SearchForm />
-      <PokemonList />
+      <Dex />
     </main>
   )
 }
