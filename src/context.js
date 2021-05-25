@@ -1,37 +1,26 @@
 import React, { useState, useContext, useEffect } from 'react'
 
-const url = 'https://pokeapi.co/api/v2/pokemon/'
+
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
+  const [numero, setNumero] = useState(3)
   const [dexLigada, setDexLigada] = useState(false)
-  const [pokemonsUrl, setPokemonsUrl] = useState([])
   const [pegou, setPegou] = useState(false)
-  const [pokemonData, setPokemonData] = useState([{id:'', name:'', sprite:''}])
+  const [pokemonData, setPokemonData] = useState({id:'', name:'', sprite1:'', sprite2:''})
+  const [pokemonInfos, setPokemonInfos] = useState({height:'', weight:'', types:[''], stats:['']})
   
+  const url = `https://pokeapi.co/api/v2/pokemon/${numero}/`
+
   // Pegando os dados iniciais
   async function fetchPokemons(url) {
     const response = await fetch(url)
     const data = await response.json()
-    const {results} = data
-    results.map((resultsUrl)=>{
-      return setPokemonsUrl(pokemonsUrl => [resultsUrl.url, ...pokemonsUrl])
-    })
+    const {id, name, sprites, height, weight, types, stats} = data
+    setPokemonData({id:id,name:name,sprite1:sprites.front_default,sprite2:sprites.back_default})
+    setPokemonInfos({height:height,weight:weight,types:types,stats:stats})
     setPegou(!pegou)
   }
-
-  // Pegando os dados individuais dos pokemons
-  async function fetchPokemonsData(url) {
-    const response = await fetch(url)
-    const data = await response.json()
-    const {id, name, sprites} = data
-    setPokemonData(pokemonData => [{id:id,name:name,sprite:sprites.front_default}, ...pokemonData])
-  }
-  useEffect(()=>{
-    for(let i=0; i<pokemonsUrl.length; i++){
-      fetchPokemonsData(pokemonsUrl[i])
-    }
-  },[pegou])
   
   // Abrindo a Pokedex
   const openDex = () =>{
@@ -39,17 +28,27 @@ const AppProvider = ({ children }) => {
     setDexLigada(!dexLigada)
   }
   
-  
+  // mudando dex
+  const nextPoke = () =>{
+    setNumero(numero+1)
+    fetchPokemons(url)
+  }
+  const prevPoke = () =>{
+    setNumero(numero-1)
+    fetchPokemons(url)
+  }
   
   
   
   
   
   return <AppContext.Provider value={{
-    pokemonsUrl,
     pokemonData,
+    pokemonInfos,
     dexLigada,
-    openDex
+    openDex,
+    nextPoke,
+    prevPoke
   }}>{children}</AppContext.Provider>
 }
 

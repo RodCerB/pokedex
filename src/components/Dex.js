@@ -1,9 +1,11 @@
 import React from 'react'
 import { useGlobalContext } from '../context'
 import { FaCircle, FaCaretRight } from "react-icons/fa";
+import VisorEsquerdo from './VisorEsquerdo'
+import VisorDireito from './VisorDireito'
 
 const Dex = () => {
-  const {pokemonsUrl, pokemonData, dexLigada, openDex} = useGlobalContext()
+  const {dexLigada, openDex} = useGlobalContext()
   
   
   if (!dexLigada){
@@ -41,35 +43,11 @@ const Dex = () => {
         <div className='dexTopoDir'/>
       </div>
 
-      {/* <VisorEsquerdo /> */}
-      <img src={pokemonData[0].sprite} alt="poke  " />
+      <VisorEsquerdo />
     </div>
-    {/* VisorDireito */}
-    <div className='dexLadoDireito'>
-      <div className='topoDexDireito'>
-        <div className='topoEsquerdo'/>
-        <div className='topoDireito'/>
-      </div>
-      <div className='centroDireito'></div>
-    </div>
+
+    <VisorDireito />
     </section>)
-
-
-  // return (
-  //   <section className='section'>
-  //     <h2 className='section-title'>Pokemons</h2>
-  //     <div className='cocktails-center'>
-  //       {/* Precisei fazer esse sort pq o na hora de fazer o fetch individual, as vezes bagunçava a ordem, assim consigo organizar ele na ordem do id dos poke antes de fazer o map */}
-  //       {pokemonData.sort((a,b)=>parseFloat(a.id) - parseFloat(b.id)).map((poke, index)=>{
-  //         const {id, name, sprite} = poke
-  //         return (<div key={index}>
-  //           <img src={sprite} alt={name} />
-  //           <h1>{name}</h1>
-  //         </div>)
-  //       })}
-  //     </div>
-  //   </section>
-  // )
 }
 
 export default Dex
