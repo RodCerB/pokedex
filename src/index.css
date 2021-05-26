@@ -13,7 +13,6 @@
 .dexBody {
   background-color: #bd0303;
   width: 100%;
-  height: 100vh;
   border: solid 3px black;
 
   transition: all 0.2s linear
@@ -165,7 +164,7 @@
   background-color: black;
   border-radius: 8px;
 
-  transition: all 0.5s linear
+  transition: all 2s linear
 }
 .visorPokemonLigado{
   display: flex;
@@ -177,7 +176,7 @@
   border-radius: 8px;
   border: solid black 1px;
 
-  transition: all 0.5s linear
+  transition: all 2s linear
 }
 .spritesPokes{
  margin-left: auto;
@@ -250,7 +249,7 @@
 .containerVisores{
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 93%;
   margin: auto;
   margin-top: 5%;
 }
@@ -262,13 +261,65 @@
 .visorDados{
   background-color: black;
   padding-left: 1vw;
+  padding-right: 1vw;
   padding-bottom: 1vw;
+  border-radius: 5px;
+  border: solid rgb(73, 73, 73) 1px;
+  height: 13vw;
 }
 .tipagem{
   display: flex;
   align-items: center;
   margin-top: 1vw;
 }
+.statusBasicos{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 2vw;
+}
+.containerPesquisa{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 95%;
+  margin-top: 2vw;
+}
+.abaPesquisa{
+  display: flex;
+  align-items: center;
+}
+.form-input{
+  outline: none;
+  height: fit-content;
+  max-width: 15vw;
+  font-size: 2rem;
+}
+.botaoPesquisa{
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: fit-content;
+  width: fit-content;
+}
+.quadroPesquisa{
+  color: gainsboro;
+  border: solid black 1px;
+  border-radius: 8px;
+  font-size: 3rem;
+}
+.botaoAmarelo{
+  color: yellow;
+  border: solid black 1px;
+  border-radius: 100%;
+  background-color: yellow;
+  font-size: 4vw;
+}
+.botaoFechar{
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
 
 
@@ -276,9 +327,91 @@
 
 
 
-
-
-
+/* States Poke */
+.boxhp{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid palevioletred 1px;
+  padding: 0 0.5vw;
+}
+.hp{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: palevioletred;
+}
+.boxattack{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid red 1px;
+  padding: 0 0.5vw;
+}
+.attack{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: red;
+}
+.boxdefense{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid green 1px;
+  padding: 0 0.5vw;
+}
+.defense{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: green;
+}
+.boxspecial-attack{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid rgb(136, 1, 1) 1px;
+  padding: 0 0.5vw;
+}
+.special-attack{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: rgb(136, 1, 1);
+}
+.boxspecial-defense{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid rgb(6, 250, 6) 1px;
+  padding: 0 0.5vw;
+}
+.special-defense{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: rgb(6, 250, 6);
+}
+.boxspeed{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid aqua 1px;
+  padding: 0 0.5vw;
+}
+.speed{
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: aqua;
+}
 
 /* Tipos Poke */
 .normal{

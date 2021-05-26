@@ -9,6 +9,9 @@ const AppProvider = ({ children }) => {
   const [pegou, setPegou] = useState(false)
   const [pokemonData, setPokemonData] = useState({id:'', name:'', sprite1:'', sprite2:''})
   const [pokemonInfos, setPokemonInfos] = useState({height:'', weight:'', types:[''], stats:['']})
+
+  const [form, setForm] = useState('')
+  const [pesquisa, setPesquisa] = useState('')
   
   const url = `https://pokeapi.co/api/v2/pokemon/${numero}/`
 
@@ -17,6 +20,8 @@ const AppProvider = ({ children }) => {
     const response = await fetch(url)
     const data = await response.json()
     const {id, name, sprites, height, weight, types, stats} = data
+    // preciso setar o numero aqui pois quando pesquiso por nome não conseguiria ir para os proximos pokes, ai resolve
+    setNumero(id)
     setPokemonData({id:id,name:name,sprite1:sprites.front_default,sprite2:sprites.back_default})
     setPokemonInfos({height:height,weight:weight,types:types,stats:stats})
     setPegou(!pegou)
@@ -30,16 +35,25 @@ const AppProvider = ({ children }) => {
   
   // mudando dex
   const nextPoke = () =>{
-    setNumero(numero+1)
-    fetchPokemons(url)
+    if(numero+1 >898){
+      setNumero(1)
+    }else{setNumero(numero+1)}
   }
   const prevPoke = () =>{
-    setNumero(numero-1)
-    fetchPokemons(url)
+    if(numero-1 < 1){
+      setNumero(898)
+    }else{setNumero(numero-1)}
   }
+  useEffect(()=>{
+    fetchPokemons(url)
+  },[numero])
   
-  
-  
+
+  // pesquisando
+  const catchPoke = () =>{
+    setNumero(form)
+    setForm('')
+  }
   
   
   return <AppContext.Provider value={{
@@ -48,7 +62,11 @@ const AppProvider = ({ children }) => {
     dexLigada,
     openDex,
     nextPoke,
-    prevPoke
+    prevPoke,
+    form,
+    setForm,
+    catchPoke,
+    url
   }}>{children}</AppContext.Provider>
 }
 
