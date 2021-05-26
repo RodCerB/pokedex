@@ -4,17 +4,22 @@ import { GiGamepadCross } from "react-icons/gi";
 import { FaCircle} from "react-icons/fa";
 
 const VisorEsquerdo = () => {
-    const {pokemonData, nextPoke, prevPoke} = useGlobalContext()
+    const {pokemonData, nextPoke, prevPoke, erro, numero} = useGlobalContext()
 
     return (
     <section className='centroEsquerdo'>
         <div className='bordaVisorPokemon'>
-            <div className={pokemonData.sprite1 ? 'visorPokemonLigado' : 'visorPokemonDesligado'}>
-                <div className='spritesPokes'>
+            <div className={erro ? 'visorPokemonDesligado' : 'visorPokemonLigado'}>
+                {erro 
+                ?<div className='erroBox'>
+                    <h2 className='erroMsg'>Nenhum pokemon encontrado pelo nome de {numero}</h2>
+                    <h2 className='erroMsg'>Verifique se a ortografia ou o número estão corretos</h2>
+                </div>  
+                :<div className='spritesPokes'>
                     <img src={pokemonData.sprite1} alt="poke" className='pokeSprite'/>
                     <img src={pokemonData.sprite2} alt="poke" className='pokeSprite'/>
-                </div>
-                <h1 className='nomePokemon'>{`#${pokemonData.id} ${pokemonData.name}`}</h1>
+                </div> }
+                {!erro && <h1 className='nomePokemon'>{`#${pokemonData.id} ${pokemonData.name}`}</h1>}
             </div>
         </div>
         <div className='containerBotoesEsquerda'>

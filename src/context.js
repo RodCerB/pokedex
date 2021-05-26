@@ -9,22 +9,25 @@ const AppProvider = ({ children }) => {
   const [pegou, setPegou] = useState(false)
   const [pokemonData, setPokemonData] = useState({id:'', name:'', sprite1:'', sprite2:''})
   const [pokemonInfos, setPokemonInfos] = useState({height:'', weight:'', types:[''], stats:['']})
-
   const [form, setForm] = useState('')
-  const [pesquisa, setPesquisa] = useState('')
+  const [erro, setErro] = useState(false)
   
   const url = `https://pokeapi.co/api/v2/pokemon/${numero}/`
 
   // Pegando os dados iniciais
   async function fetchPokemons(url) {
+    try{
     const response = await fetch(url)
     const data = await response.json()
     const {id, name, sprites, height, weight, types, stats} = data
+    setErro(false)
     // preciso setar o numero aqui pois quando pesquiso por nome não conseguiria ir para os proximos pokes, ai resolve
     setNumero(id)
     setPokemonData({id:id,name:name,sprite1:sprites.front_default,sprite2:sprites.back_default})
     setPokemonInfos({height:height,weight:weight,types:types,stats:stats})
     setPegou(!pegou)
+    }
+    catch{setErro(true)}
   }
   
   // Abrindo a Pokedex
@@ -66,7 +69,8 @@ const AppProvider = ({ children }) => {
     form,
     setForm,
     catchPoke,
-    url
+    erro,
+    numero
   }}>{children}</AppContext.Provider>
 }
 
