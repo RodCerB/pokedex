@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
   const [pokemonInfos, setPokemonInfos] = useState({height:'', weight:'', types:[''], stats:['']})
   const [form, setForm] = useState('')
   const [erro, setErro] = useState(false)
+  const [team, setTeam] = useState([])
   
   const url = `https://pokeapi.co/api/v2/pokemon/${numero}/`
 
@@ -57,7 +58,23 @@ const AppProvider = ({ children }) => {
     setNumero(form)
     setForm('')
   }
-  
+
+  // Add poke no time
+  const capturePoke = () =>{
+    if(team.length <6){
+      setTeam(team => [...team, {id:pokemonData.id, img:pokemonData.sprite1}])
+    }
+  }
+  // Remove poke no time
+  const releasePoke = () => {
+    let newTeam = team.filter((poke) => poke.id !== pokemonData.id)
+    setTeam(newTeam)
+  }
+  // Limpa time
+  const clearPoke = () => {
+    setTeam([])
+  }
+
   
   return <AppContext.Provider value={{
     pokemonData,
@@ -70,7 +87,11 @@ const AppProvider = ({ children }) => {
     setForm,
     catchPoke,
     erro,
-    numero
+    numero,
+    capturePoke,
+    team,
+    releasePoke,
+    clearPoke
   }}>{children}</AppContext.Provider>
 }
 

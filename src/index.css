@@ -242,16 +242,37 @@
   width: 40%;
   height: 10px;
 }
+.btnVermelho{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+}
 .selectAzul{
   background-color: rgb(38, 2, 201);
   width: 40%;
   height: 10px;
+}
+.btnAzul{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
 }
 .telaVerde{
   background-color: rgb(47, 255, 57);
   width: 100%;
   height: 60px;
   margin-top: 4vw;
+}
+.btnVerde{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
 }
 
 
@@ -330,7 +351,36 @@
   background: none;
   border: none;
 }
-
+.visorPesoAltura{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1vw;
+}
+.visorAltura{
+  background-color: black;
+  width: 12vw;
+  padding: 1vw 1vw;
+  text-align: center;
+}
+.visorPeso{
+  background-color: black;
+  width: 12vw;
+  padding: 1vw 1vw;
+  text-align: center;
+}
+.visorTime{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 96px;
+  margin-top: 2vw;
+  background-color: blanchedalmond;
+  border: solid black 1px;
+  border-radius: 5px;
+}
+.pokeTime{
+  border-right: solid black 1px;
+}
 
 
 

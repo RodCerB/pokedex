@@ -4,7 +4,7 @@ import { FaCircle} from "react-icons/fa";
 import { BsFillSquareFill } from "react-icons/bs";
 
 const VisorDireito = () => {
-    const {pokemonInfos, form, setForm, openDex, catchPoke, erro} = useGlobalContext()
+    const {pokemonInfos, form, setForm, openDex, catchPoke, erro, team} = useGlobalContext()
     
     return (
     <div className='dexLadoDireito'>
@@ -36,6 +36,14 @@ const VisorDireito = () => {
                 </div>
               })}
             </div></>}
+          </div>
+
+          <div className='visorTime'>
+            {team.map((poke,index)=>{
+              const {img, id} = poke
+
+              return (<div className='pokeTime' key={index}><img src={img} alt={`poke${id}`} className='imgTime'/></div>)
+            })}
           </div>
 
           <div className='containerPesquisa'>

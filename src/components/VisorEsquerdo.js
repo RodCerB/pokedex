@@ -4,7 +4,7 @@ import { GiGamepadCross } from "react-icons/gi";
 import { FaCircle} from "react-icons/fa";
 
 const VisorEsquerdo = () => {
-    const {pokemonData, nextPoke, prevPoke, erro, numero} = useGlobalContext()
+    const {pokemonData, nextPoke, prevPoke, erro, numero, capturePoke, releasePoke, clearPoke} = useGlobalContext()
 
     return (
     <section className='centroEsquerdo'>
@@ -26,10 +26,10 @@ const VisorEsquerdo = () => {
             <button className='btnCirculoPreto' onClick={()=>prevPoke()}><FaCircle className='circuloPreto'/></button>
             <div className='boxBotoesEsquerda'>
                 <div className='selects'>
-                    <div className='selectVermelho' />
-                    <div className='selectAzul' />
+                    <div className='selectVermelho'><button className='btnVermelho' onClick={()=>releasePoke()}/></div>
+                    <div className='selectAzul'><button className='btnAzul' onClick={()=>capturePoke()}/></div>
                 </div>
-                <div className='telaVerde' />
+                <div className='telaVerde'><button className='btnVerde' onClick={()=>clearPoke()}/></div>
             </div>
             <button className='btnPadPreto' onClick={()=>nextPoke()}><GiGamepadCross className='padPreto' /></button>
         </div>
